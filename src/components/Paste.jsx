@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { removeFromPastes } from '../redux/pasteSlice';
 import toast from 'react-hot-toast';
 import { NavLink } from 'react-router-dom';
+ import { FaEdit, FaEye, FaTrash, FaCopy, FaShareAlt } from "react-icons/fa";
+
 const Paste = () => {
   const pastes = useSelector((state)=>
   state.paste.pastes);
@@ -19,14 +21,14 @@ const Paste = () => {
  
 
   return (
-    <div className='flex flex-col gap-3'>
+    <div className='Pastes flex flex-col items-center gap-5'>
         <input type="search"
-        className='p-2 rounded-2xl min-w-[600px] mt-5  bg-gray-100'
-        placeholder='search here'
+        className='p-2 rounded-2xl min-w-[600px] mt-5  bg-gray-100 w-[60%]  text-black'
+        placeholder=' 🔍 search here ...'
         value={searchTerm}
         onChange={(e)=>setSearchTerm(e.target.value)}
         />
-        <div className='flex flex-col gap-5'>
+        <div className='Pastes flex flex-col gap-5'>
         {
           filteredData.length >0 && filteredData.map(
             (paste)=>{
@@ -41,28 +43,29 @@ const Paste = () => {
                 };
               return (
                <div  key={paste?._id} 
-               className='border flex flex-col justify-center items-center rounded-2xl bg-gray-100'>
-                 <div className='font-bold'
+               className='Paste relative  border flex flex-col justify-center items-center rounded-2xl bg-gray-100 p-6 mx-100 min-w-[500px]'>
+                 <div className='font-bold  text-black'
                 >{paste.title}
                 </div>
-                <div>
+                <div className='flex wrap p-5 pb-14 text-xl  text-black'>
                   {paste.content}
                 </div>
-                <div className='flex flex-row gap-4 place-content-evenly'>
+                <div className='absolute bottom-2 right-2'>
+                <div className=' buttons  flex flex-row gap-2 place-content-evenly text-sm font-bold'>
                   <button>
                     <NavLink to={`/?pasteId=${paste?._id}`}>
-                      Edit
+                     <FaEdit/>
                     </NavLink>
                   </button>
                   <button>
                     <NavLink to={`/pastes/${paste?._id}`}>
-                    View
+                    <FaEye/>
                     </NavLink>
                     </button>
                   <button 
                   className='text-blue-500'
                   onClick={()=>handleDelete(paste?._id)}>
-                    Delete
+                    <FaTrash/>
                     </button>
                   <button
                   className='text-blue-500'
@@ -71,7 +74,7 @@ const Paste = () => {
                     (paste?.content)
                     toast.success("copied to clipBoard")
                   }}>
-                    Copy
+                    <FaCopy/>
                     </button>
                    <button
                     className='text-blue-500'
@@ -90,11 +93,13 @@ const Paste = () => {
                             toast.success("Share link copied to clipboard (fallback)");
                               }
                               }}>
-                              Share
+                              <FaShareAlt/>
                    </button>
                 </div>
-                <div>{date.toLocaleString('en-US', options)}</div>
+                <div className='flex justify-center text-black'>{date.toLocaleString('en-US', options)}</div>
                </div> 
+
+                </div>
                
               )
             }

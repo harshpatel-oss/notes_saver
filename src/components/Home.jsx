@@ -10,14 +10,14 @@ const Home = () => {
     const dispatch = useDispatch();
     const allPastes = useSelector((state)=>
         state.paste.pastes);
-      useEffect(
+        useEffect(
             ()=>{
                 console.log("inside useEffect")
                 if(pasteId){
                     const paste = allPastes.find((p)=>p._id === pasteId);
                     if(paste){
                         setTitle(paste.title);
-                         setValue(paste.content);
+                        setValue(paste.content);
                     }
                 }
             },[pasteId] )
@@ -50,14 +50,14 @@ const Home = () => {
    <div>
      <div className="flex flex-row gap-7 place-content-between">
       <input 
-       className='rounded-2xl  mt-2 p-1 w-[66%] pl-4  bg-gray-100'
+       className='rounded-2xl  mt-2 p-1 w-[66%] pl-4  bg-gray-100 text-xl  text-black'
        type="text" 
-       placeholder='enter title here'
+       placeholder='enter title here...'
        value={title}
        onChange={(e)=>setTitle(e.target.value)}
       />
       <button
-       className='rounded-2xl p-2 mt-2'
+       className='rounded-2xl p-2 mt-2 text-xl  text-black bg-gray-100'
        onClick={createPaste}
       >
         {
@@ -67,9 +67,9 @@ const Home = () => {
     </div>
     <div className='mt-8'>
         <textarea 
-        className='rounded-2xl mt-4 min-w-[500px] p-4 bg-gray-100'
+        className='rounded-2xl mt-4 min-w-[500px] p-4 bg-gray-100 text-xl text-black'
         value={value}
-        placeholder='enter content here'
+        placeholder='enter content here...'
         onChange={(e)=>setValue(e.target.value)}
         rows={20}
         ></textarea>

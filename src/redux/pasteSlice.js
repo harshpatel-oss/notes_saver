@@ -6,7 +6,7 @@ pastes:localStorage.getItem("pastes")
     :[]
 }
 export const pasteSlice = createSlice({
-  name: 'paste',
+  name: 'paste',  // 👈 This is the key name used in the global Redux store
   initialState,
   reducers: {
     addToPastes: (state,action) => {
